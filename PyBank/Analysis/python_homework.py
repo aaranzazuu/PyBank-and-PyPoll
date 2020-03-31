@@ -18,13 +18,13 @@ with open(file,'r') as csvfile:
         sum_changes = sum_changes + changes
         previous_value = int(row[1])
     
-    net_changes = sum_changes/count
+    net_changes = sum_changes/(count-1)
+    formatted_net_changes = str(format(net_changes))
 
     print("Financial Analysis")
     print("--------------------")
     print("Total Months: " + str(count))
     print("Total: $" + str(net_profit))
-    print(str(changes))
-    print(str(net_changes))
+    print("Average Change: $ "+ str(net_changes))
     print("Greatest Increase in Profits:")
     print("Greatest Decrease in Profits")
