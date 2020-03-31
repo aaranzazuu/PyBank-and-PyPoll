@@ -10,12 +10,19 @@ with open(file,'r') as csvfile:
 # Total number of months included in the dataset
     for row in csvreader:
         count = count + 1
-    print("Dataset has " + str(count) + " number of rows")
-
-# The net total amount of "Profit/Losses" over the entire period
-    for row in csvreader:
-        net_profit = net_profit + row[1]
-    print("The net total amount of profit for the entire period is " + str(net_profit))
+        net_profit = net_profit + int(row[1])
+    
+    def average (profits):
+        avg = count/net_profit
+        return avg
+    net_list=row[1]
+    print("Financial Analysis")
+    print("--------------------")
+    print("Total Months: " + str(count))
+    print("Total: $" + str(net_profit))
+    print("Average Change: $" + str(avg(net_list)))
+    print("Greatest Increase in Profits:")
+    print("Greatest Decrease in Profits")
 
         
 
