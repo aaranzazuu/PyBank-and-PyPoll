@@ -24,7 +24,7 @@ with open(file,'r') as csvfile:
         elif row[2] == "O'Tooley":
             votes_Otooley = votes_Otooley + 1
     
-    percentage_Khan = votes_Khan/count
+    percentage_Khan = (votes_Khan/count)
     percentage_Correy = votes_Correy/count
     percentage_Li = votes_Li/count
     percentage_OTooley = votes_Otooley/count
@@ -34,8 +34,9 @@ with open(file,'r') as csvfile:
     print("--------------------")
     print("Total Votes: " + str(count))
     print("--------------------")
-    print(candidate_list)
-    print([str(percentage_Khan), str(votes_Khan), str(percentage_Correy), str(votes_Correy), str(percentage_Li), str(votes_Li), str(percentage_OTooley), str(votes_Otooley)])
+    print((candidate_list[1]) + ":" + "{:.2%}".format(percentage_Khan)+ "("+str(votes_Khan)+")")
+    print((candidate_list[2])+ ":" + "{:.2%}".format(percentage_Correy) + "("+str(votes_Correy)+")")
+    print((candidate_list[3])+ ":" + "{:.2%}".format(percentage_Li) + "("+str(votes_Li)+")")
+    print((candidate_list[4])+ ":" + "{:.2%}".format(percentage_OTooley)+ "("+str(votes_Otooley)+")")
     print("--------------------")
     print("Winner: ")
-    print("--------------------")
