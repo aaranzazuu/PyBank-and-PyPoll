@@ -22,16 +22,20 @@ with open(file,'r') as csvfile:
         net_profit = net_profit + int(row[1])
         changes = int(row[1])-int(previous_value)
         list_changes.append(changes)
-        sum_changes = sum_changes + changes
-        previous_value = int(row[1])
-        if greatest_value > int(row[1]):
+        if int(greatest_value) > int(row[1]):
+            greatest_value = greatest_value
             greatest_value_month = greatest_value_month
         else: 
+            greatest_value = int(row[1])
             greatest_value_month = row[0]
-        if lowest_value > int(row[1]):
+        if int(lowest_value) < int(row[1]):
+            lowest_value = lowest_value
             lowest_value_month = lowest_value_month
         else: 
+            lowest_value = int(row[1])
             lowest_value_month = row[0]
+        sum_changes = sum_changes + changes
+        previous_value = int(row[1])
     average_changes = sum_changes/(count-1)
     greatest_increase = max(list_changes)
     greatest_decrease = min(list_changes)
