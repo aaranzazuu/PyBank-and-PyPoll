@@ -5,6 +5,7 @@ with open(file,'r') as csvfile:
     csv_header = next(csvreader)
     first_row = next(csvreader)
 
+
     count = 1
     net_profit = int(first_row[1])
     previous_value = int(first_row[1])
@@ -64,10 +65,10 @@ with open(file,'r') as csvfile:
 output_path = '../PyBank/Analysis/Financial_Analysis.txt'
 with open(output_path, 'w') as csvfile:
     csvwriter = csv.writer(csvfile, delimiter=',')
-    csvwriter.writerow("Financial Analysis")
-    csvwriter.writerow("----------------")
-    csvwriter.writerow("Total Months: " + str(count)) 
-    csvwriter.writerow("Total: $: " + str(net_profit))
-    csvwriter.writerow("Average Change: $ "+ str(average_changes))
-    csvwriter.writerow("Greatest Increase in Profits:" + greatest_value_month + "($" + str(greatest_increase)+ ")")
-    csvwriter.writerow("Greatest Decrease in Profits:" + lowest_value_month + "($" + str(greatest_decrease)+ ")")
+    csvwriter.writerow(["Financial Analysis"])
+    csvwriter.writerow(["----------------"])
+    csvwriter.writerow(["Total Months: " + str(count)]) 
+    csvwriter.writerow(["Total: $: " + str(net_profit)])
+    csvwriter.writerow(["Average Change: $ "+ str(average_changes)])
+    csvwriter.writerow(["Greatest Increase in Profits:" + greatest_value_month + "($" + str(greatest_increase)+ ")"])
+    csvwriter.writerow(["Greatest Decrease in Profits:" + lowest_value_month + "($" + str(greatest_decrease)+ ")"])
