@@ -5,7 +5,7 @@ with open(file,'r') as csvfile:
     csv_header = next(csvreader)
 
     count = 1
-    candidate_list = []
+    candidate_list = []t
     votes_Khan = 0
     votes_Correy = 0
     votes_Li = 0
