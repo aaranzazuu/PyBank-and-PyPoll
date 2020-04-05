@@ -1,4 +1,6 @@
-import csv  
+import csv 
+
+#Open file
 file = '../PyBank/Resources/03-Python_HW_Instructions_PyBank_Resources_budget_data.csv'
 with open(file,'r') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')

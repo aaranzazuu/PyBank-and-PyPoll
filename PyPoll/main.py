@@ -1,42 +1,63 @@
 import csv  
+
+#Open file
 file = '../PyPoll/Resources/03-Python_HW_Instructions_PyPoll_Resources_election_data.csv'
 with open(file,'r') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
     csv_header = next(csvreader)
 
-    count = 1
-    candidate_list = []
-    votes_Khan = 0
-    votes_Correy = 0
-    votes_Li = 0
-    votes_Otooley = 0
+    count = 0
+    votes_list = []
+    votes_dictionary = {}
+    results = 0
+    votes_percentage_list = []
 
     for row in csvreader:
+        #The total number of votes cast
         count = count + 1
-        if row[2] not in candidate_list:
-            candidate_list.append(row[2])
-        if row[2] == "Khan":
-            votes_Khan = votes_Khan + 1
-        elif row[2] == "Correy":
-            votes_Correy = votes_Correy + 1
-        elif row[2] == "Li":
-            votes_Li = votes_Li + 1
-        elif row[2] == "O'Tooley":
-            votes_Otooley = votes_Otooley + 1
+        #Create a list of all the votes
+        votes_list.append(row[2])
+    #Create a dictionary that counts all the votes. Candidates as key, total number of votes for each candidate as value.
+    for candidates in votes_list:
+        if candidates in votes_dictionary:
+            votes_dictionary[candidates] += 1
+        else:
+            votes_dictionary[candidates] = 1
     
-    percentage_Khan = (votes_Khan/count)
-    percentage_Correy = votes_Correy/count
-    percentage_Li = votes_Li/count
-    percentage_OTooley = votes_Otooley/count
+    #Winner of the election 
+    winner_candidate = max(votes_dictionary.keys(), key=(lambda k: votes_dictionary[candidates]))
+
+    #Percentage of votes each candidate won
+    for candidates in votes_dictionary:
+        votes_percentage = "{0:.2%}".format(votes_dictionary[candidates]/count)
+        votes_percentage_list.append(votes_percentage)
+    
+    #Transform dictionary into lists for printing
+    candidates_list = list(votes_dictionary.keys())
+    candidates_votes = list(votes_dictionary.values())
 
 
+    #Print the analysis to terminal
     print("Election Results")
     print("--------------------")
     print("Total Votes: " + str(count))
     print("--------------------")
-    print((candidate_list[1]) + ":" + "{:.2%}".format(percentage_Khan)+ "("+str(votes_Khan)+")")
-    print((candidate_list[2])+ ":" + "{:.2%}".format(percentage_Correy) + "("+str(votes_Correy)+")")
-    print((candidate_list[3])+ ":" + "{:.2%}".format(percentage_Li) + "("+str(votes_Li)+")")
-    print((candidate_list[4])+ ":" + "{:.2%}".format(percentage_OTooley)+ "("+str(votes_Otooley)+")")
+    for i in range(len(candidates_list)):
+        print(candidates_list[i] + " : " + votes_percentage_list[i] + " (" + str(candidates_votes[i])+ ")")
     print("--------------------")
-    print("Winner: ")
+    print("Winner: " + winner_candidate)
+    print("--------------------")
+
+    #Export a text file with the results
+    output_path = '../PyPoll/Analysis/Election_Results.txt'
+with open(output_path, 'w') as csvfile:
+    csvwriter = csv.writer(csvfile, delimiter=',')
+    csvwriter.writerow(["Election Results"])
+    csvwriter.writerow(["----------------"])
+    csvwriter.writerow(["Total Votes: " + str(count)]) 
+    csvwriter.writerow(["----------------"])
+    for i in range(len(candidates_list)):
+        csvwriter.writerow([candidates_list[i] + " : " + votes_percentage_list[i] + " (" + str(candidates_votes[i])+ ")"])
+    csvwriter.writerow(["--------------------"])
+    csvwriter.writerow(["Winner: " + winner_candidate])
+    csvwriter.writerow(["--------------------"])
