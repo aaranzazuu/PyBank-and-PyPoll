@@ -25,7 +25,7 @@ with open(file,'r') as csvfile:
     
     #Transform dictionary into lists for printing
     candidates_list = list(votes_dictionary.keys())
-    candidate_votes = list(votes_dictionary.values())
+    candidates_votes = list(votes_dictionary.values())
 
     #Percentage of votes each candidate won
     for candidates in votes_dictionary:
@@ -41,11 +41,12 @@ with open(file,'r') as csvfile:
     print("--------------------")
     print("Total Votes: " + str(count))
     print("--------------------")
-    print(candidates_list[0])
-    print(candidate_votes[0])
+    for i in range(len(candidates_list)):
+        print(candidates_list[i] + " : " + votes_percentage_list[i] + " (" + str(candidates_votes[i])+ ")")
+
+    #print(candidates_votes[0])
     #print(votes_dictionary)
-    print(votes_percentage_list[0])
-    # print((candidate_list[1]) + ":" + "{:.2%}".format(percentage_Khan)+ "("+str(votes_Khan)+")")
+    #print(
     #print((candidate_list[2])+ ":" + "{:.2%}".format(percentage_Correy) + "("+str(votes_Correy)+")")
     #print((candidate_list[3])+ ":" + "{:.2%}".format(percentage_Li) + "("+str(votes_Li)+")")
     #print((candidate_list[4])+ ":" + "{:.2%}".format(percentage_OTooley)+ "("+str(votes_Otooley)+")")
