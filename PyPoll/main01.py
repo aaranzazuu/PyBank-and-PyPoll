@@ -23,18 +23,18 @@ with open(file,'r') as csvfile:
         else:
             votes_dictionary[candidates] = 1
     
-    #Transform dictionary into lists for printing
-    candidates_list = list(votes_dictionary.keys())
-    candidates_votes = list(votes_dictionary.values())
+    #Winner of the election 
+    winner_candidate = max(votes_dictionary.keys(), key=(lambda k: votes_dictionary[candidates]))
 
     #Percentage of votes each candidate won
     for candidates in votes_dictionary:
         votes_percentage = "{0:.2%}".format(votes_dictionary[candidates]/count)
         votes_percentage_list.append(votes_percentage)
     
+    #Transform dictionary into lists for printing
+    candidates_list = list(votes_dictionary.keys())
+    candidates_votes = list(votes_dictionary.values())
 
-
-    #Winner of the election 
 
     #Print the analysis to terminal
     print("Election Results")
@@ -43,14 +43,8 @@ with open(file,'r') as csvfile:
     print("--------------------")
     for i in range(len(candidates_list)):
         print(candidates_list[i] + " : " + votes_percentage_list[i] + " (" + str(candidates_votes[i])+ ")")
-
-    #print(candidates_votes[0])
-    #print(votes_dictionary)
-    #print(
-    #print((candidate_list[2])+ ":" + "{:.2%}".format(percentage_Correy) + "("+str(votes_Correy)+")")
-    #print((candidate_list[3])+ ":" + "{:.2%}".format(percentage_Li) + "("+str(votes_Li)+")")
-    #print((candidate_list[4])+ ":" + "{:.2%}".format(percentage_OTooley)+ "("+str(votes_Otooley)+")")
-    #print("--------------------")
-    #print("Winner:)
+    print("--------------------")
+    print("Winner: " + winner_candidate)
+    print("--------------------")
 
     #Export a text file with the results
